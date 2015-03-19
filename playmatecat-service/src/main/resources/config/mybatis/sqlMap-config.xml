@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+
+    <settings>
+        <!-- 使用LOG4J输出mybatis -->
+        <setting name="logImpl" value="LOG4J"/>
+    </settings>
+    <typeAliases>
+        
+        <typeAlias alias="String" type="java.lang.String" />
+        <typeAlias alias="Map" type="java.util.Map" />
+        
+    </typeAliases>
+
+</configuration>

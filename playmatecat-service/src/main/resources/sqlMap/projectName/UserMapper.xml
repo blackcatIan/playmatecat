@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 该namespace对应接口路径,否则抛出异常:"...is not known to the MapperRegistr" 
+    每个select中id对应接口中的一个方法名
+ -->
+<mapper namespace="com.playmatecat.service.UserMapper">
+    <select id="selectById" parameterType="int" resultType="com.playmatecat.service.User">
+        select * from Leaf_front.user where id = #{id}
+    </select>  
+</mapper>
