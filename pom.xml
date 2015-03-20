@@ -6,7 +6,36 @@
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>pom</packaging>
 	<name>playmatecat</name>
+	
+	<properties>
+	   <com.playmatecat.commons.version>0.0.1-SNAPSHOT</com.playmatecat.commons.version>
+	</properties>
 
+	<!-- 把依赖的jar包拷到lib目录下 -->
+	<build>
+		<plugins>
+			<!-- 把依赖的jar包拷到lib目录下 -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-dependency-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>copy-dependencies</id>
+						<phase>package</phase>
+						<goals>
+							<goal>copy-dependencies</goal>
+						</goals>
+						<configuration>
+							<outputDirectory>${project.build.directory}/lib</outputDirectory>
+							<overWriteReleases>false</overWriteReleases>
+							<overWriteSnapshots>false</overWriteSnapshots>
+							<overWriteIfNewer>true</overWriteIfNewer>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
 
 	<modules>
 		<module>playmatecat-service</module>
@@ -15,6 +44,14 @@
 
 
 	<dependencies>
+	
+	    <!-- 外部工程依赖 -->
+        <dependency>
+            <groupId>com.playmatecat</groupId>
+            <artifactId>playmatecat-commons</artifactId>
+            <version>${com.playmatecat.commons.version}</version>
+        </dependency>
+	
 		
 		<!--json smart -->
 		<dependency>

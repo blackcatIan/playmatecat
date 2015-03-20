@@ -9,7 +9,12 @@
 	<artifactId>playmatecat-service</artifactId>
 
 	<dependencies>
-	   <!-- 子模块互相依赖 -->
+	    <!-- 子模块互相依赖 ,这样mina工程可以读到service工程配置-->
+        <!--<dependency>
+            <groupId>com.playmatecat</groupId>
+            <artifactId>playmatecat-commons</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency> -->
  	
 	
 		<!-- spring -->
