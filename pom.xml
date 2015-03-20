@@ -11,11 +11,11 @@
 	<modules>
 		<module>playmatecat-service</module>
 		<module>playmatecat-mina</module>
-		<module>playmatecat-common</module>
 	</modules>
 
 
 	<dependencies>
+		
 		<!--json smart -->
 		<dependency>
 			<groupId>net.minidev</groupId>

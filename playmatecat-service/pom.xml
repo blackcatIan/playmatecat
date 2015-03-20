@@ -10,12 +10,7 @@
 
 	<dependencies>
 	   <!-- 子模块互相依赖 -->
-        <dependency>
-            <groupId>com.playmatecat</groupId>
-            <artifactId>playmatecat-common</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
-        </dependency>
-	
+ 	
 	
 		<!-- spring -->
 		<dependency>

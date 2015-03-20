@@ -5,7 +5,6 @@ import net.minidev.json.JSONValue;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.playmatecat.mina.NioTransferAdapter;
 import com.playmatecat.service.User;
 import com.playmatecat.service.UserService;
 
