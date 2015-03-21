@@ -24,8 +24,8 @@ public class NioTCPServer {
 	private static final int PORT = 8501;
 	/**服务IP**/
 	private static final String ADDRESS = "127.0.0.1";
-	/**1分钟超时**/
-	private static final int TIME_OUT = 60000;
+	/**超时**/
+	private static final int TIME_OUT = 60;
 
 	/**
 	 * 程序入口
@@ -61,12 +61,14 @@ public class NioTCPServer {
 		
 		// @STEP4 添加接收器配置
 		//读取缓冲区
-		acceptor.getSessionConfig().setReadBufferSize(2048);
+		acceptor.getSessionConfig().setReadBufferSize(1024);
+		//必须设定最大值，保证一定数据量后会立刻返回
+		//acceptor.getSessionConfig().setMaxReadBufferSize(128);
 		//io空停滞时间
 		acceptor.getSessionConfig().setIdleTime(IdleStatus.BOTH_IDLE, 10);
 		//超时时间
 		acceptor.getSessionConfig().setWriteTimeout(TIME_OUT);
-
+		
 		//加载spring配置文件
 		ApplicationContextHolder.init();
 		

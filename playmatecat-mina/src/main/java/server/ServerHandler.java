@@ -2,6 +2,8 @@ package server;
 
 import java.lang.reflect.Method;
 import java.text.MessageFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import net.minidev.json.JSONValue;
 
@@ -9,6 +11,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.apache.log4j.Logger;
 import org.apache.mina.core.service.IoHandlerAdapter;
 import org.apache.mina.core.session.IoSession;
+import org.apache.mina.transport.socket.nio.NioSession;
 
 import application.ApplicationContextHolder;
 
@@ -38,7 +41,10 @@ public class ServerHandler extends IoHandlerAdapter {
 		logger.info(MessageFormat.format("[Nio Server]<<Request service name:{0}", nta.getRestServiceName() ));
 		logger.info(MessageFormat.format("[Nio Server]<<Request json data:{0}", nta.getJSONdata() ));
 		logger.info(MessageFormat.format("[Nio Server]<<Request dto class:{0}", nta.getClazz() ));
-
+		
+		//请求唯一标码
+		String GUID = nta.getGUID();
+		//请求的服务名
 		String restServiceName = nta.getRestServiceName();
 		
 		String ctpName = "get From db by restServiceName";
@@ -61,10 +67,10 @@ public class ServerHandler extends IoHandlerAdapter {
 			result = (String) method.invoke(reflectCpt);
 		}
 		
+		//返回数据，并且设定相同的唯一标码来保证客户端识别是哪次请求
 		NioTransferAdapter rtnNta = new NioTransferAdapter(result);
-		
+		rtnNta.setGUID(GUID);
 		session.write(rtnNta);
-	
 	}
 
 	@Override
