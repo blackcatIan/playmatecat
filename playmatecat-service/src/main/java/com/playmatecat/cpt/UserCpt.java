@@ -16,9 +16,11 @@ public class UserCpt {
 	
 	public String testCall() {
 		Long start = System.currentTimeMillis();
-		User user = userService.selectUserById(100000000);
+		User user = new User();
+		
+				//userService.selectUserById(100000000);
 		Long end = System.currentTimeMillis();
-		System.out.println("sql finshed in " + (end - start) + " ms");
+		//System.out.println("sql finshed in " + (end - start) + " ms");
 		
 		return JSONValue.toJSONString(user);
 	}
