@@ -12,13 +12,13 @@
 
 
 	<bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource">
-		<property name="url" value="jdbc:mysql://115.29.208.110:3306/?useUnicode=true&amp;characterEncoding=UTF-8&amp;zeroDateTimeBehavior=convertToNull" />
-		<property name="username" value="root" />
+		<property name="url" value="${${env}.datasource1.jdbcUrl}" />
+		<property name="username" value="${${env}.datasource1.user}" />
 		<!-- 加密java -cp druid-0.2.23.jar com.alibaba.druid.filter.config.ConfigTools 
 			you_password -->
-		<property name="password" value="qaz2014wsx" />
+		<property name="password" value="${${env}.datasource1.password}" />		
 		<!-- 自动解密 -->
-		<!-- <property name="connectionProperties" value="config.decrypt=true" /> -->
+		<property name="connectionProperties" value="config.decrypt=true" />
 		<!-- 初始化时建立物理连接的个数。初始化发生在显示调用init方法，或者第一次getConnection时 -->
 		<property name="initialSize" value="3" />
 		<!-- 最大连接池数量 -->

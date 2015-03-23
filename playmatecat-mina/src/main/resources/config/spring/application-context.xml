@@ -21,11 +21,10 @@
     <context:property-placeholder location="classpath*:config/**/*.properties" />
     
     <!-- 通过此项配置，spring将会支持下面的资源文件的引用，你可以使用${key}来引用资源文件内的键值对 -->
-    <bean id="propertyConfigurer2"
-        class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
-        <!-- 其中order属性代表其加载顺序, 当多有PropertyPlaceholderConfigurer使用此项,注意此项会造成
-        PropertyPlaceholderConfigurer在有引用的bean实例化后再初始化！！这样会造成有的配置无法使用${properties} -->
-        <!-- <property name="order" value="2" /> -->
+    <bean id="propertyConfigurer1"
+        class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer" lazy-init="false">
+        <!-- 其中order属性代表其加载顺序 -->
+        <!-- <property name="order" value="0" /> -->
         <!-- 当有多个 PropertyPlaceholderConfigurer时使用此项目 -->
         <!-- <property name="ignoreUnresolvablePlaceholders" value="true" />  -->
         <property name="locations">

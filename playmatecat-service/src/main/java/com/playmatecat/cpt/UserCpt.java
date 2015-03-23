@@ -21,7 +21,7 @@ public class UserCpt {
 		Long start = System.currentTimeMillis();
 		User user = new User();
 		
-				//userService.selectUserById(100000000);
+		userService.selectUserById(100000000);
 		Long end = System.currentTimeMillis();
 		//System.out.println("sql finshed in " + (end - start) + " ms");
 

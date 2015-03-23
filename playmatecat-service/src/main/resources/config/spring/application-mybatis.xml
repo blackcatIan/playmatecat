@@ -25,15 +25,16 @@
 
 
 	<!-- mybatis sqlsession管理器 -->
-	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+	<bean name="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean" autowire="byName">
 		<property name="dataSource" ref="dataSource" />
 		<property name="configLocation" value="classpath:/config/mybatis/sqlMap-config.xml" />
 		<property name="mapperLocations" value="classpath*:/sqlMap/**/*.xml"></property>
 	</bean>
 	
 	<!-- mybatis接口编程自动扫描 -->
-	<bean id="mybatisMapperScanner" class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-        <property name="sqlSessionFactory"  ref="sqlSessionFactory"/>
+	<bean id="mapperScannerConfigurer" class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+	    <!-- 注意这部,通过传入的是一个文本name来反射sql factory解决了,properties在这个bean之后加载的问题！！ -->
+        <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"/>
         <property name="basePackage" value="com.playmatecat"></property>
     </bean>
 
