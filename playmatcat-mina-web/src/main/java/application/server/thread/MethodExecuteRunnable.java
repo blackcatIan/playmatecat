@@ -1,4 +1,4 @@
-package server.thread;
+package application.server.thread;
 
 import java.text.MessageFormat;
 import java.util.concurrent.FutureTask;

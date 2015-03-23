@@ -1,4 +1,4 @@
-package server;
+package application.server;
 
 import java.net.InetSocketAddress;
 
@@ -32,7 +32,7 @@ public class NioTCPServer {
 	 * @param args
 	 * @throws Exception
 	 */
-	public static void main(String[] args) throws Exception {
+	public static void init() throws Exception {
 		logger.info("starting nio server");
 
 		// @STEP1 创建一个nio的接收器，并且绑定端口
