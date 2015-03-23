@@ -80,7 +80,7 @@ public class NioTCPServer {
 			acceptor.unbind();
 		}
 		
-		
+		logger.info("[Nio Server]finshed boot server!!");
 		
 	}
 

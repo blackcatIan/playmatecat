@@ -27,7 +27,7 @@
 		<property name="minIdle" value="4" />
 		<!-- 连接测试语句 -->
 		<property name="validationQuery" value="SELECT NOW()" />
-		<property name="filters" value="config" />
+		<property name="filters" value="config,stat" />
 		<property name="proxyFilters">
 			<list>
 				<ref bean="logFilter" />
