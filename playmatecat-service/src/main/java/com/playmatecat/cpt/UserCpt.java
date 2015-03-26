@@ -2,6 +2,7 @@ package com.playmatecat.cpt;
 
 import java.util.Random;
 
+import net.minidev.json.JSONObject;
 import net.minidev.json.JSONValue;
 
 import org.apache.commons.lang3.RandomUtils;
@@ -27,8 +28,15 @@ public class UserCpt {
 
 		user.setUsername(String.valueOf(RandomUtils.nextLong(0, 100000)));
 		
-		
 		return JSONValue.toJSONString(user);
+	}
+	
+	
+	public static void main(String[] args) {
+		User user = new User();
+		user.setUsername("abc");
+		String jsonStr = JSONValue.toJSONString(user);
+		JSONObject jsonObj = JSONValue.parse(jsonStr, JSONObject.class);
 	}
 }
 
