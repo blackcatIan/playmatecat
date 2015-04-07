@@ -28,7 +28,7 @@ public class NioTCPServer {
 	private static final int TIME_OUT = 60;
 	
 	/**minaIO接收**/
-	private static IoAcceptor acceptor;
+	private static NioSocketAcceptor acceptor;
 
 	/**
 	 * 程序入口
@@ -88,6 +88,7 @@ public class NioTCPServer {
 	}
 	
 	public static void destory() {
+		acceptor.dispose();
 		acceptor.unbind();
 	}
 
