@@ -1,22 +1,13 @@
 package application.server.thread;
 
-import java.util.ArrayList;
 import java.util.concurrent.ArrayBlockingQueue;
-import java.util.concurrent.Callable;
-import java.util.concurrent.ExecutionException;
-import java.util.concurrent.FutureTask;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
-import java.util.concurrent.TimeoutException;
-
-import sun.nio.ch.ThreadPool;
 
 public class MethodExecutePool {
-	private static int consumeTaskSleepTime = 2000;
-	private static int produceTaskMaxNumber = 10;
 	
 	private static int MIN_POOL_SIZE = 2;
-	private static int MAX_POOL_SIZE = 100;
+	private static int MAX_POOL_SIZE = 50;
 	/**有线程闲置10秒则从线程池中减少数量**/
 	private static int REDUCE_POOL_TIME = 10;
 	

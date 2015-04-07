@@ -8,9 +8,9 @@
 		<artifactId>playmatecat</artifactId>
 		<version>0.0.1-SNAPSHOT</version>
 	</parent>
-	<artifactId>playmatcat-mina-web</artifactId>
+	<artifactId>playmatecat-mina-web</artifactId>
 	<packaging>war</packaging>
-	<name>playmatcat-mina-web</name>
+	<name>playmatecat-mina-web</name>
 
 
 	<dependencies>

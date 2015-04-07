@@ -63,7 +63,7 @@
 
 	<modules>
 		<module>playmatecat-service</module>
-		<module>playmatcat-mina-web</module>
+		<module>playmatecat-mina-web</module>
 	</modules>
 
 
