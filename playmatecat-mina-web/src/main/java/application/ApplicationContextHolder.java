@@ -4,6 +4,8 @@ import org.apache.log4j.Logger;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
+import application.server.thread.MethodExecutePool;
+
 /**
  * spring配置文件加载器
  * @author root
@@ -31,6 +33,14 @@ public class ApplicationContextHolder {
 			ctx = new ClassPathXmlApplicationContext("classpath*:/config/spring/application*.xml");
 			long end = System.currentTimeMillis();
 			logger.info("[Spring] init application contexts complate in " + (end - start) + "ms.");
+			
+			//加载完成后启动自己写的多线程方法扫描器
+			Thread scanner = new Thread(new Runnable() {
+				public void run() {
+					MethodExecutePool.keepScanExcuteMethod();
+				}
+			});
+			scanner.start();
 		}
 	}
 	

@@ -19,6 +19,12 @@ import com.playmatecat.mina.NioTransferAdapter;
  */
 public class ServerHandler extends IoHandlerAdapter {
 	
+	@Override
+	public void sessionCreated(IoSession session) throws Exception {
+		logger.info("session created!");
+		super.sessionCreated(session);
+	}
+
 	private static Logger logger = Logger.getLogger(ServerHandler.class);
 	
 	@Override
@@ -30,73 +36,8 @@ public class ServerHandler extends IoHandlerAdapter {
 	@Override
 	public void messageReceived(IoSession session, Object message)
 			throws Exception {
-		
-		NioTransferAdapter nta = (NioTransferAdapter) message;
-//		logger.info(MessageFormat.format("[Nio Server]<<Request service name:{0}", nta.getRestServiceName() ));
-//		logger.info(MessageFormat.format("[Nio Server]<<Request json data:{0}", nta.getJSONdata() ));
-//		logger.info(MessageFormat.format("[Nio Server]<<Request dto class:{0}", nta.getClazz() ));
-		
-		
-		
-		
-//		//请求唯一标码
-//		String GUID = nta.getGUID();
-//		//请求的服务名
-//		String restServiceName = nta.getRestServiceName();
-//		
-//		String ctpName = "get From db by restServiceName";
-//		String ctpMethodName = "get From db by restServiceName";
-//		
-//		ctpName = "userCpt";
-//		ctpMethodName = "testCall";
-//		
-//		//获得组件名
-//		Object reflectCpt = ApplicationContextHolder.getApplicationContext().getBean(ctpName);
-//		//nta.getClazz获得DTO的类型，作为反射调用函数的入参类型
-//		String result = StringUtils.EMPTY;
-//		if(nta.getClazz() != null) {
-//			//有参调用
-//			//反射方法用了很多时间！！所以用缓存
-//			//尝试从缓存中取得需要执行方法,找不到再用反射
-//			String keyName = ctpMethodName + nta.getClazz().getName();
-//			Method method = MethodCache.methodMap.get(keyName);
-//			if(method == null) {
-//				method = reflectCpt.getClass().getMethod(ctpMethodName,nta.getClazz());
-//				MethodCache.methodMap.put(keyName, method);
-//			}
-//			result = (String) method.invoke(reflectCpt,JSONValue.parse(nta.getJSONdata(),nta.getClazz()));
-//			//result = "abc";
-//		} else {
-//			//无参调用
-//			Method method = reflectCpt.getClass().getMethod(ctpMethodName);
-//			result = (String) method.invoke(reflectCpt);
-//		}
-//		
-//		//返回数据，并且设定相同的唯一标码来保证客户端识别是哪次请求
-//		NioTransferAdapter rtnNta = new NioTransferAdapter(result);
-//		rtnNta.setGUID(GUID);
-//		session.write(rtnNta);
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-//		ThreadPoolExecutor threadPool = MethodExecutePool.getThreadPool();
-//		threadPool.execute(new MethodExecuteRunnable(session, message));
-		
-//		NioTransferAdapter rtnNta = new NioTransferAdapter("abc");
-//		rtnNta.setGUID( ((NioTransferAdapter) message).getGUID() );
-//		session.write(rtnNta);
+		//转交给spring多线程扫描器
 		MethodExecutePool.execute(new MethodExecuteRunnable(session, message));
-		//MethodExecutePool.execute(new MethodExecuteRunnable(session, message));
 	}
 
 	@Override

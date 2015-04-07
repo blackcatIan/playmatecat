@@ -26,6 +26,9 @@ public class NioTCPServer {
 	private static final String ADDRESS = "127.0.0.1";
 	/**超时**/
 	private static final int TIME_OUT = 60;
+	
+	/**minaIO接收**/
+	private static IoAcceptor acceptor;
 
 	/**
 	 * 程序入口
@@ -39,7 +42,7 @@ public class NioTCPServer {
 		/*
 		 * 通过这个接收器，我们可以直接定义一个处理类，并进行端口绑定(必须配置完其他设置才能绑定)
 		 */
-		IoAcceptor acceptor = new NioSocketAcceptor();
+		acceptor = new NioSocketAcceptor();
 	
 		// @STEP2 创建一个过滤器链配置.注意链式顺序
 		/*
@@ -82,6 +85,10 @@ public class NioTCPServer {
 		
 		logger.info("[Nio Server]finshed boot server!!");
 		
+	}
+	
+	public static void destory() {
+		acceptor.unbind();
 	}
 
 }
