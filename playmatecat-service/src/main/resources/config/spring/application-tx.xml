@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:context="http://www.springframework.org/schema/context"
+    xmlns:aop="http://www.springframework.org/schema/aop"
+    xmlns:tx="http://www.springframework.org/schema/tx"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans 
+           http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+           http://www.springframework.org/schema/context
+           http://www.springframework.org/schema/context/spring-context-4.0.xsd
+           http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.0.xsd
+           http://www.springframework.org/schema/tx 
+           http://www.springframework.org/schema/tx/spring-tx-4.0.xsd">
+
+
+    <bean id="transactionManager"
+        class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="dataSource" ref="dataSource" />
+        <!-- 有配置时才会增加事务同步,不会因为为空而添加默认值SUPPORTS -->
+        <property name="transactionSynchronization" value="1" />
+    </bean>
+
+    <tx:advice id="txAdvice" transaction-manager="transactionManager">
+        <tx:attributes>
+            <!-- read-only true,在方法中写入数据库的数据,这部分中数据对本方法不可见 -->
+            <!-- insert增 -->
+            <tx:method name="add*" propagation="REQUIRED" rollback-for="Exception" read-only="false"/>
+            <tx:method name="insert*" propagation="REQUIRED" rollback-for="Exception" read-only="false"/>
+            <!-- delete删 -->
+            <tx:method name="remove*" propagation="REQUIRED" rollback-for="Exception" read-only="false"/>
+            <tx:method name="delete*" propagation="REQUIRED" rollback-for="Exception" read-only="false"/>
+            <!-- update改 -->
+            <tx:method name="save*" propagation="REQUIRED" rollback-for="Exception" read-only="false"/>
+            <tx:method name="update*" propagation="REQUIRED" rollback-for="Exception" read-only="false"/>
+            <!-- select查 -->
+            <tx:method name="get*" propagation="REQUIRED" read-only="false" />
+            <tx:method name="select*" propagation="REQUIRED" read-only="false" />
+            
+            <!-- 支持当前事务，如果当前没有事务，就以非事务方式执行 -->
+            <tx:method name="*" propagation="SUPPORTS" read-only="false" rollback-for="Exception"/>
+        </tx:attributes>
+    </tx:advice>
+
+    <aop:config>
+        <aop:pointcut id="oaServiceMethods"
+            expression="execution(* com.playmatecat..*..cpt..*.*(..))" />
+        <aop:advisor advice-ref="txAdvice" pointcut-ref="oaServiceMethods" />
+    </aop:config>
+    
+</beans>
