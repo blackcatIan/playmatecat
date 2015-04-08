@@ -20,13 +20,20 @@
 		<!-- 自动解密 -->
 		<property name="connectionProperties" value="config.decrypt=true" />
 		<!-- 初始化时建立物理连接的个数。初始化发生在显示调用init方法，或者第一次getConnection时 -->
-		<property name="initialSize" value="3" />
+		<property name="initialSize" value="4" />
 		<!-- 最大连接池数量 -->
-		<property name="maxActive" value="8" />
+		<property name="maxActive" value="20" />
 		<!-- 最小连接池数量 -->
 		<property name="minIdle" value="4" />
 		<!-- 连接测试语句 -->
 		<property name="validationQuery" value="SELECT NOW()" />
+		<!-- 是否缓存preparedStatement，也就是PSCache -->
+		<!-- PSCache对支持游标的数据库性能提升巨大，比如说oracle。Mysql需要5.5或以上 -->
+		<property name="maxOpenPreparedStatements" value="true" />
+		<!-- PSCache大小 -->
+		<!-- 数据库端内存消耗计算:所有服务段最大连接数*200kb*maxOpenPreparedStatements值.
+		 此处大约为20*200kb*50=200mb-->
+		<property name="maxOpenPreparedStatements" value="50" />
 		<property name="filters" value="config,stat" />
 		<property name="proxyFilters">
 			<list>
