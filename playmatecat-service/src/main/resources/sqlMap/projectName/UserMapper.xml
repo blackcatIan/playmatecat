@@ -8,5 +8,9 @@
 <mapper namespace="com.playmatecat.service.UserMapper">
     <select id="selectById" parameterType="int" resultType="com.playmatecat.service.User">
         select * from Leaf_front.user where id = #{id}
-    </select>  
+    </select>
+    
+    <insert id="insertUser" parameterType="com.playmatecat.service.User">
+        insert into Leaf_front.user (username,password) values("test tx","12345")
+    </insert>
 </mapper>

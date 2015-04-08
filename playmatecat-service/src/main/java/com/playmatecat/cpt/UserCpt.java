@@ -6,6 +6,7 @@ import net.minidev.json.JSONObject;
 import net.minidev.json.JSONValue;
 
 import org.apache.commons.lang3.RandomUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -18,7 +19,7 @@ public class UserCpt {
 	@Autowired
 	private UserService userService;
 	
-	public String testCall() {
+	public String savetestCall() throws Exception{
 		Long start = System.currentTimeMillis();
 		User user = new User();
 		
@@ -27,6 +28,15 @@ public class UserCpt {
 		//System.out.println("sql finshed in " + (end - start) + " ms");
 
 		user.setUsername(String.valueOf(RandomUtils.nextLong(0, 100000)));
+		
+		User tmpUser = new User();
+		user.setUsername("testTx");
+		userService.insertUser(tmpUser);
+		
+		if(StringUtils.isEmpty("")) {
+			throw new Exception("test tx error");
+		}
+		
 		
 		return JSONValue.toJSONString(user);
 	}

@@ -1,6 +1,5 @@
 package com.playmatecat.service;
 
-import net.minidev.json.annotate.JsonIgnore;
 
 public class User {
 	

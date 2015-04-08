@@ -41,7 +41,7 @@ public class MethodExecuteRunnable extends Thread {
 		String ctpMethodName = "get From db by restServiceName";
 		
 		ctpName = "userCpt";
-		ctpMethodName = "testCall";
+		ctpMethodName = "savetestCall";
 		
 		//获得组件名
 		Object reflectCpt = ApplicationContextHolder.getApplicationContext().getBean(ctpName);
