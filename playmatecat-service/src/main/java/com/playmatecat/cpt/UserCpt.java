@@ -1,7 +1,5 @@
 package com.playmatecat.cpt;
 
-import java.util.Random;
-
 import net.minidev.json.JSONObject;
 import net.minidev.json.JSONValue;
 
@@ -33,9 +31,9 @@ public class UserCpt {
 		user.setUsername("testTx");
 		userService.insertUser(tmpUser);
 		
-		if(StringUtils.isEmpty("")) {
-			throw new Exception("test tx error");
-		}
+//		if(StringUtils.isEmpty("")) {
+//			throw new Exception("test tx error");
+//		}
 		
 		
 		return JSONValue.toJSONString(user);
