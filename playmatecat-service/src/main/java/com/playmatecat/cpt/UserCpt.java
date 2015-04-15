@@ -17,7 +17,7 @@ public class UserCpt {
 	@Autowired
 	private UserService userService;
 	
-	public String savetestCall() throws Exception{
+	public String savetestCall() {
 		Long start = System.currentTimeMillis();
 		User user = new User();
 		
@@ -31,6 +31,8 @@ public class UserCpt {
 		user.setUsername("testTx");
 		userService.insertUser(tmpUser);
 		
+		String a[] = new String[2];
+		String b = a[5];
 //		if(StringUtils.isEmpty("")) {
 //			throw new Exception("test tx error");
 //		}
